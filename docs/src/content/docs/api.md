@@ -518,4 +518,5 @@ Example response:
 
 
 <!-- conflict-lab -->
+Conflict experiment: version A.
 Conflict experiment: version B.
