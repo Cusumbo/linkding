@@ -272,9 +272,9 @@ def _base_bookmarks_query(
         query_set = query_set.filter(favorite=False)
 
     # Notes filter; unrecognized or absent values leave it disabled.
-    if search.has_notes == "true":
+    if search.has_notes in ("true", "yes"):
         query_set = query_set.exclude(notes="")
-    elif search.has_notes == "false":
+    elif search.has_notes in ("false", "no"):
         query_set = query_set.filter(notes="")
 
     # Filter by bundle
