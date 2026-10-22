@@ -40,6 +40,7 @@ Parameters:
 - `bundle` - Filter results by bundle id to only include bookmarks matched by a given bundle
 - `favorite` - Use `true` (or `yes`) for favorites only, or `false` (or `no`) for non-favorites. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Ownership and visibility rules remain unchanged.
 - `shared` - Use `true` (or `yes`) for shared bookmarks only, or `false` (or `no`) for unshared bookmarks only. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Results remain limited to your own bookmarks.
+- `has_notes` - Use `true` (or `yes`) for bookmarks with non-empty notes, or `false` (or `no`) for bookmarks whose notes are the empty string (`""`). Whitespace-only stored notes count as non-empty; Markdown is not rendered or stripped for this check. Values are case-sensitive. Omitting the parameter, passing an empty value, or passing an unrecognized value disables this filter (HTTP 200, not a validation error). This is a derived filter, not a stored bookmark field. It combines with `q` and other filters without changing ownership or archive visibility rules.
 
 Example response:
 

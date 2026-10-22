@@ -274,6 +274,7 @@ class BookmarkSearchForm(forms.Form):
     shared = forms.ChoiceField(choices=FILTER_SHARED_CHOICES, widget=forms.RadioSelect)
     unread = forms.ChoiceField(choices=FILTER_UNREAD_CHOICES, widget=forms.RadioSelect)
     favorite = forms.CharField(required=False)
+    has_notes = forms.CharField(required=False)
     modified_since = forms.CharField(required=False)
     added_since = forms.CharField(required=False)
 
