@@ -38,6 +38,7 @@ Parameters:
 - `modified_since` - Filter results to only include bookmarks modified after the specified date (format: ISO 8601, e.g. "2025-01-01T00:00:00Z")
 - `added_since` - Filter results to only include bookmarks added after the specified date (format: ISO 8601, e.g. "2025-05-29T00:00:00Z")
 - `bundle` - Filter results by bundle id to only include bookmarks matched by a given bundle
+- `has_description` - Use `true` (or `yes`) for bookmarks with a non-empty description, or `false` (or `no`) for bookmarks whose description is an empty string. Whitespace-only descriptions count as non-empty. Values are case-sensitive; omitting the parameter or passing an empty or unrecognized value leaves this filter disabled. It can be combined with `q` and other filters. Results remain limited to your own bookmarks and the archive state of the endpoint.
 - `favorite` - Use `true` (or `yes`) for favorites only, or `false` (or `no`) for non-favorites. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Ownership and visibility rules remain unchanged.
 - `shared` - Use `true` (or `yes`) for shared bookmarks only, or `false` (or `no`) for unshared bookmarks only. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Results remain limited to your own bookmarks.
 
