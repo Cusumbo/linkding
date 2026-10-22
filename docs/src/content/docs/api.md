@@ -523,3 +523,11 @@ Conflict experiment: version A.
 
 <!-- conflict-lab -->
 Conflict experiment: version A.
+
+## Recovery test
+
+This section exists solely to verify continuity of work after an interruption.
+
+The work was deliberately left incomplete. A later session recovered its context from the Git history and workspace files and completed this section.
+
+Status: recovery completed
