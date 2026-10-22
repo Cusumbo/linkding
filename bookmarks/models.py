@@ -246,6 +246,7 @@ class BookmarkSearch:
         "shared",
         "favorite",
         "has_description",
+        "has_notes",
         "unread",
         "modified_since",
         "added_since",
@@ -259,6 +260,7 @@ class BookmarkSearch:
         "shared": FILTER_SHARED_OFF,
         "favorite": "off",
         "has_description": "off",
+        "has_notes": "off",
         "unread": FILTER_UNREAD_OFF,
         "modified_since": None,
         "added_since": None,
@@ -277,6 +279,7 @@ class BookmarkSearch:
         preferences: dict = None,
         request: any = None,
         favorite: str = None,
+        has_notes: str = None,
         has_description: str = None,
     ):
         if not preferences:
@@ -291,6 +294,7 @@ class BookmarkSearch:
         self.shared = shared or self.defaults["shared"]
         self.favorite = favorite or self.defaults["favorite"]
         self.has_description = has_description or self.defaults["has_description"]
+        self.has_notes = has_notes or self.defaults["has_notes"]
         self.unread = unread or self.defaults["unread"]
         self.modified_since = modified_since or self.defaults["modified_since"]
         self.added_since = added_since or self.defaults["added_since"]

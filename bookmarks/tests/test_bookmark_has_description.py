@@ -62,6 +62,21 @@ class HasDescriptionApiTestCase(LinkdingApiTestCase, BookmarkFactoryMixin):
         for value in ("", "invalid", "TRUE", "FALSE", "1", "0", "off"):
             self.assert_filter_results({"has_description": value}, [0, 1, 2])
 
+    def test_description_and_notes_filters_intersect(self):
+        for bookmarks in self.bookmarks.values():
+            for bookmark, notes in zip(bookmarks, ("A note", "", "A note"), strict=True):
+                bookmark.notes = notes
+                bookmark.save()
+        for description, notes, expected in (
+            ("true", "true", [2]),
+            ("true", "false", [1]),
+            ("false", "true", [0]),
+            ("false", "false", []),
+        ):
+            self.assert_filter_results(
+                {"has_description": description, "has_notes": notes}, expected
+            )
+
     def test_filter_combines_with_search(self):
         self.assert_filter_results({"has_description": "true", "q": "matching"}, [1, 2])
         self.assert_filter_results({"has_description": "false", "q": "matching"}, [0])
@@ -82,6 +97,16 @@ class HasDescriptionSearchTestCase(TestCase, BookmarkFactoryMixin, BookmarkListT
                 form = BookmarkSearchForm(search, editable_fields=["q"])
                 self.assertEqual(form["has_description"].initial, value)
                 self.assertEqual(form.hidden_fields(), [form["has_description"]])
+
+    def test_both_filters_survive_search_form(self):
+        params = {"q": "matching", "has_description": "true", "has_notes": "false"}
+        search = BookmarkSearch.from_request(None, QueryDict(urlencode(params)))
+        self.assertEqual(search.query_params, params)
+        form = BookmarkSearchForm(search, editable_fields=["q"])
+        self.assertEqual(
+            {field.name: field.value() for field in form.hidden_fields()},
+            {"has_description": "true", "has_notes": "false"},
+        )
 
     def test_default_web_list_renders_without_filter(self):
         self.client.force_login(self.get_or_create_test_user())

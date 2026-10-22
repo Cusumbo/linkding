@@ -41,6 +41,7 @@ Parameters:
 - `has_description` - Use `true` (or `yes`) for bookmarks with a non-empty description, or `false` (or `no`) for bookmarks whose description is an empty string. Whitespace-only descriptions count as non-empty. Values are case-sensitive; omitting the parameter or passing an empty or unrecognized value leaves this filter disabled. It can be combined with `q` and other filters. Results remain limited to your own bookmarks and the archive state of the endpoint.
 - `favorite` - Use `true` (or `yes`) for favorites only, or `false` (or `no`) for non-favorites. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Ownership and visibility rules remain unchanged.
 - `shared` - Use `true` (or `yes`) for shared bookmarks only, or `false` (or `no`) for unshared bookmarks only. Omitting the parameter or passing an unrecognized value leaves this filter disabled. Results remain limited to your own bookmarks.
+- `has_notes` - Use `true` (or `yes`) for bookmarks with non-empty notes, or `false` (or `no`) for bookmarks whose notes are the empty string (`""`). Whitespace-only stored notes count as non-empty; Markdown is not rendered or stripped for this check. Values are case-sensitive. Omitting the parameter, passing an empty value, or passing an unrecognized value disables this filter (HTTP 200, not a validation error). This is a derived filter, not a stored bookmark field. It combines with `q` and other filters without changing ownership or archive visibility rules.
 
 Example response:
 
@@ -524,3 +525,11 @@ Conflict experiment: version A.
 
 <!-- conflict-lab -->
 Conflict experiment: version A.
+
+## Recovery test
+
+This section exists solely to verify continuity of work after an interruption.
+
+The work was deliberately left incomplete. A later session recovered its context from the Git history and workspace files and completed this section.
+
+Status: recovery completed
