@@ -279,6 +279,12 @@ def mark_as_read(request: HttpRequest, bookmark_id: int | str):
     bookmark.save()
 
 
+def toggle_favorite(request: HttpRequest, bookmark_id: int | str):
+    bookmark = access.bookmark_write(request, bookmark_id)
+    bookmark.favorite = not bookmark.favorite
+    bookmark.save(update_fields=["favorite"])
+
+
 def create_html_snapshot(request: HttpRequest, bookmark_id: int | str):
     bookmark = access.bookmark_write(request, bookmark_id)
     tasks.create_html_snapshot(bookmark)
@@ -368,6 +374,8 @@ def handle_action(request: HttpRequest, query: QuerySet[Bookmark] = None):
         return remove(request, request.POST["remove"])
     if "mark_as_read" in request.POST:
         return mark_as_read(request, request.POST["mark_as_read"])
+    if "toggle_favorite" in request.POST:
+        return toggle_favorite(request, request.POST["toggle_favorite"])
     if "unshare" in request.POST:
         return unshare(request, request.POST["unshare"])
     if "create_html_snapshot" in request.POST:
