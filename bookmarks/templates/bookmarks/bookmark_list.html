@@ -83,6 +83,18 @@
                 {% endif %}
                 {% if bookmark_item.is_editable %}
                   {# Bookmark owner actions #}
+                  <button type="submit"
+                          name="toggle_favorite"
+                          value="{{ bookmark_item.id }}"
+                          class="btn btn-link btn-sm"
+                          aria-label="Favorite"
+                          aria-pressed="{{ bookmark_item.favorite|yesno:'true,false' }}">
+                    {% if bookmark_item.favorite %}
+                      Unfavorite
+                    {% else %}
+                      Favorite
+                    {% endif %}
+                  </button>
                   {% if bookmark_list.show_edit_action %}
                     <a href="{% url 'linkding:bookmarks.edit' bookmark_item.id %}?return_url={{ bookmark_list.return_url|urlencode }}">Edit</a>
                   {% endif %}
