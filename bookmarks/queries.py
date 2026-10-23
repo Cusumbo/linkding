@@ -271,6 +271,12 @@ def _base_bookmarks_query(
     elif search.favorite in ("false", "no"):
         query_set = query_set.filter(favorite=False)
 
+    # Description presence; whitespace counts as content, invalid values are ignored.
+    if search.has_description in ("true", "yes"):
+        query_set = query_set.exclude(description="")
+    elif search.has_description in ("false", "no"):
+        query_set = query_set.filter(description="")
+
     # Notes filter; unrecognized or absent values leave it disabled.
     if search.has_notes in ("true", "yes"):
         query_set = query_set.exclude(notes="")
